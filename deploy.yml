@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,9 +15,13 @@ spec:
     spec:
       containers:
       - name: python-env
-        image: bigazzzz/python-env:latest
+        image: bigazzzz/python-env:v0.2
+        env:
+        - name: "PYTHONENV_ROOT_PATH"
+          value: "/pythonenv"
         ports:
         - containerPort: 8000
+
 ---
 kind: Service
 apiVersion: v1
@@ -27,6 +32,7 @@ spec:
     app: python-env
   ports:
   - port: 8000
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -38,7 +44,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /hostname
+      - path: /pythonenv
         pathType: ImplementationSpecific
         backend:
           service:

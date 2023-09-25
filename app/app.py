@@ -10,22 +10,23 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 current_directory = os.path.dirname(os.path.abspath(__file__))
 templates = Jinja2Templates(current_directory + "/templates")
+prefix = os.environ.get('PYTHONENV_ROOT_PATH')
+if prefix is None:
+    prefix = ""
 
-@app.get("/", response_class=PlainTextResponse)
+@app.get(prefix + "/", response_class=PlainTextResponse)
 async def index(request: Request):
     return templates.TemplateResponse("array.html.j2", {"request": request, "envs": get_env_array()})
 
-
-@app.get("/all", response_class=JSONResponse)
+@app.get(prefix + "/all", response_class=JSONResponse)
 async def get_all_env(request: Request):
     return JSONResponse(get_env_array())
 
-@app.get("/hostname", response_class=PlainTextResponse)
+@app.get(prefix + "/hostname", response_class=PlainTextResponse)
 async def get_hostname(request: Request):
     return PlainTextResponse(os.uname().nodename)
 
-
-@app.get("/env/{env}", response_class=PlainTextResponse)
+@app.get(prefix + "/env/{env}", response_class=PlainTextResponse)
 async def get_env(request: Request, env:str):
     return PlainTextResponse(str(os.environ[env]))
 
