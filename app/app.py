@@ -8,11 +8,12 @@ from fastapi.responses import PlainTextResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates")
+current_directory = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(current_directory + "/templates")
 
 @app.get("/", response_class=PlainTextResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("json_array.txt.j2", {"request": request, "envs": get_env_array()})
+    return templates.TemplateResponse("array.html.j2", {"request": request, "envs": get_env_array()})
 
 
 @app.get("/all", response_class=JSONResponse)
