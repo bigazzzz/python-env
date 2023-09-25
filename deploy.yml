@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-env-deployment
+spec:
+  selector:
+    matchLabels:
+      app: python-env
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: python-env
+    spec:
+      containers:
+      - name: python-env
+        image: bigazzzz/python-env:latest
+        ports:
+        - containerPort: 8000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: python-env-service
+spec:
+  selector:
+    app: python-env
+  ports:
+  - port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-env-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hostname
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: python-env-service
+            port:
+              number: 8000
