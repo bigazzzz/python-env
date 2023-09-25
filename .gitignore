@@ -1,0 +1,112 @@
+__pycache__
+
+### Temporary files ###
+*.log
+*.lock
+
+### Backup ###
+*.bak
+*.gho
+*.ori
+*.orig
+*.tmp
+*.test
+*.tst
+
+# dotenv, dotenv-rails
+.env.*
+
+# gummi
+.*.swp
+
+## Environment normalization:
+/.bundle
+/vendor/bundle
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### IDE ###
+.idea
+.vscode
+*.code-workspace
+
+### Archives ###
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.tar.bz
+*.tar.bz2
+*.tbz2
+*.rar
+*.z
+*.tar.Z
+*.lzo
+*.tar.lzma
+*.tlz
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.gzip
+*.tgz
+*.bzip
+*.bzip2
+*.bz2
+*.xz
+*.lzma
+*.cab
+*.xar
+
+### certificates ###
+*.pem
+*.key
+*.crt
+*.cer
+*.priv
+
+### SSH ###
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+
+### MicrosoftOffice ###
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
+### Spreadsheet ###
+*.xlr
+*.xls
+*.xlsx
+
+### Microsoft ###
+*.exe
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
